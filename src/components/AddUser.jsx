@@ -10,6 +10,7 @@ const AddUser = () => {
     e.preventDefault();
     console.log(formRef);
     const newUser = {
+      id: Date.now(),
       name: formRef.current[0].value,
       age: formRef.current[1].value,
       email: formRef.current[2].value,

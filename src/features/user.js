@@ -12,10 +12,15 @@ export const userSlice = createSlice({
       state.users.push(payload);
     },
     deleteUser: (state, { payload }) => {
-      state.users = state.users.filter((user, index) => index != payload);
+      state.users = state.users.filter((user) => user.id != payload);
     },
     updateUser: (state, { payload }) => {
-      state.users[payload.id].name = payload.value;
+      state.users = state.users.map((user) => {
+        if (user.id == payload.id) {
+          user.name = payload.value;
+        }
+        return user;
+      });
     },
   },
 });

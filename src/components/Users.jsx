@@ -7,8 +7,8 @@ const Users = () => {
   console.log(users);
   return (
     <div className="flex flex-wrap gap-10 p-5 items-center ">
-      {users.map((user, index) => (
-        <User key={index} user={user} index={index} />
+      {users.map((user) => (
+        <User key={user.id} user={user} />
       ))}
     </div>
   );

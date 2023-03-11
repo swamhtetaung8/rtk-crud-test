@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { deleteUser, updateUser } from "../features/user";
 
-const User = ({ user, index }) => {
+const User = ({ user }) => {
   const dispatch = useDispatch();
   const inputRef = useRef();
   return (
@@ -20,7 +20,11 @@ const User = ({ user, index }) => {
         <button
           className=" bg-blue-500 px-2 rounded-md text-white"
           onClick={() => {
-            dispatch(updateUser({ id: index, value: inputRef.current.value }));
+            if (inputRef.current.value !== "") {
+              dispatch(
+                updateUser({ id: user.id, value: inputRef.current.value })
+              );
+            }
             inputRef.current.value = "";
           }}>
           Update
@@ -29,7 +33,7 @@ const User = ({ user, index }) => {
       <button
         className=" bg-red-500 w-full py-1 text-white rounded-md"
         onClick={() => {
-          dispatch(deleteUser(index));
+          dispatch(deleteUser(user.id));
         }}>
         Delete User
       </button>
